@@ -83,9 +83,8 @@ public class Encryptor
      */
     public String encryptMessage(String message)
     {
-        for (int i = 0; i < message.length(); i++) {
-               String blank =  message.substring(i, )
-        }
+        int start = 0;
+
     }
 
     /**  Decrypts an encrypted message. All filler 'A's that may have been
