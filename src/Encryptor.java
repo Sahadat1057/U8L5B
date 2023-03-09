@@ -81,10 +81,19 @@ public class Encryptor
      *
      *  @return the encrypted message; if message is the empty string, returns the empty string
      */
-    public String encryptMessage(String message)
-    {
-        int start = 0;
-
+    public String encryptMessage(String message) {
+        String blank = "";
+        int i = 0;
+        while (i < message.length()) {
+            fillBlock(message);
+            blank += encryptBlock();
+            i++;
+            for (int j = numCols * numRows; j < message.length(); j++) {
+                fillBlock(message.substring(numCols*numRows));
+                blank += encryptBlock();
+            }
+        }
+        return blank;
     }
 
     /**  Decrypts an encrypted message. All filler 'A's that may have been
