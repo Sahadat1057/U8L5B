@@ -85,13 +85,9 @@ public class Encryptor
         String blank = "";
         int i = 0;
         while (i < message.length()) {
-            fillBlock(message);
-            blank += encryptBlock();
-            i++;
-            for (int j = numCols * numRows; j < message.length(); j++) {
-                fillBlock(message.substring(numCols*numRows));
+                fillBlock(message.substring(i));
                 blank += encryptBlock();
-            }
+                i += numRows*numCols;
         }
         return blank;
     }
@@ -120,7 +116,25 @@ public class Encryptor
      */
     public String decryptMessage(String encryptedMessage)
     {
-        /* to be implemented in part (d) */
-        return null;
+        String blank = "";
+        int i = 0;
+        int c = 0;
+        while (i < encryptedMessage.length()) {
+            for (int r = 0; r < numRows; )
+           letterBlock[r][c] = encryptedMessage.substring(i, i+1);
+           r++;
+           c++;
+        }
+        for (int j = 0; j < letterBlock.length; j++) {
+            for (int q = 0; q < letterBlock[0].length; q++) {
+                if (letterBlock[j][q].equals("A") == false ) {
+                    blank = blank + letterBlock[j][q];
+                }
+            }
+        }
+        return blank;
+
     }
+
+
 }
